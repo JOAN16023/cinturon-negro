@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+
+    <div class="flex">
+        <div class="flex-item">
+            <h1>Registro</h1>
+            <ul>
+                {% for e in register_errors %}
+                    <li>{{e}}</li>
+                {% endfor %}
+            </ul>
+            <form action="/registrarse/" method="post">
+                <div>
+                    <label for="">Nombre</label>
+                    <input type="text" name="firstname" id="">
+                </div> 
+                <div>
+                    <label for="">Apellido</label>
+                    <input type="text" name="lastname">
+                </div>
+                <div>
+                    <label for="">Email</label>
+                    <input type="email" name="email">
+                </div>
+                <div>
+                    <label for="">Contraseña</label>
+                    <input type="password" name="pass1">
+                </div>
+                <div>
+                    <label for="">Repetir Contraseña</label>
+                    <input type="password" name="pass2">
+                </div>
+                <div>
+                    <button type="submit">Registrar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="flex-item">
+            <h1>Inicio sesión</h1>
+            <div>
+                <ul>
+                    {% for error in login_errors %}
+                        <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <form action="/iniciosesion" method="post">
+                <div>
+                    <label for="">Email</label>
+                    <input type="email" name="email" id="">
+                </div> 
+                <div>
+                    <label for="">Contraseña</label>
+                    <input type="password" name="password">
+                </div>
+                <div>
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+
+        
+    </div>
+
+
+
+</body>
+</html>

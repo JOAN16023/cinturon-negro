@@ -5,22 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    table, tr, td {
+            border: 1px black dashed;
+        }   
+</style>
 <body>
     
-    <h1>bienvenido,  session["id_usuarios"]!</h1>
-    <div>
-        <form action="/idea/crear" method="post">
-            <input type="text" name="nombre_subido"> <button type="submit"> Agrega tu idea </button>
-        </form>
-    </div>
+    <h1>bienvenido</h1> <a href="">log out</a>
+    
+    <a href="/citas/crear">crear tabla citas</a>
 
-    <div class="textos">
-        {% for a in  %}
-            <div>
-                
-            </div>
-        {% endfor %}
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Citas
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    status
+                </th>
+                <th>
+                    opciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for colegio in colegios %}
+            <tr>
+                <td>
+                    <p>
+                        <a href="/colegios/{{colegio.id}}">{{ colegio.nombre }}</a>
+                    </p>
+                </td>
+                <td>
+                    <div>
+                        <button type="button" onclick="window.location = '/colegios/{{colegio.id}}/editar/'">Editar</button>
+                        <form action="colegios/{{id_colegios}}/eliminar/" method="post">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
 
 
     

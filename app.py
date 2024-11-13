@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, session
 from flask_bcrypt import Bcrypt
 
 from models.usuarios import Usuario
-from models.ideas import Ideas 
+from models.tasks import Tasks 
 
-from datetime import datetime
+
 
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -77,20 +77,23 @@ def loguo():
     session.clear()
     return redirect("paginaprincipal.html")
 
-@app.route("/Inicionube")
+
+#
+
+
+@app.route("/Inicionube/")
 def inicio():
     return render_template('paginaprincipal.html')
 
-@app.route('/Idea/crear/', methods=["GET"])
-def crear_idea_form():
-    return render_template('paginaprincipal.html')
-
-@app.route('/idea/crear', methods=["POST"])
-def crear_idea():
-    nombre = request.form.get("nombre_subido")
-    Ideas.insert_texto(nombre)
-    return redirect("/inicionube")
+@app.route('/citas/crear/', methods=["GET"])
+def crear_citas():
+    return render_template('crear_citas.html')
     
+@app.route('/citas/crear/', methods=["POST", ])
+def crear_cita():
+    citas = request.form.get("nombre_citas")
+    Tasks.insert(citas)
+    return redirect('/Inicionube/')
 
 if __name__ == '__main__':
     app.run(debug=True)

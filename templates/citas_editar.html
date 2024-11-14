@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar citas</title>
+    <h1>Editar citas: {{task.name}}</h1>
+    <form action="/citas/{{id_citas}}/editar/" method="post">
+        <div>
+            <input type="hidden" name="usuario_id" value="{{task.id}}">
+        </div>
+        <div>
+            <label for="name">Nombre</label>
+            <input type="text" name="nombre_citas" value="{{task.name}}" >
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</head>
+<body>
+    
+</body>
+</html>

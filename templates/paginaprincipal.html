@@ -34,17 +34,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for colegio in colegios %}
+            {% for tasks in task %}
             <tr>
                 <td>
                     <p>
-                        <a href="/colegios/{{colegio.id}}">{{ colegio.nombre }}</a>
+                        <a href="/citas/{{id_citas}}">{{ task.name }}</a>
                     </p>
                 </td>
                 <td>
                     <div>
-                        <button type="button" onclick="window.location = '/colegios/{{colegio.id}}/editar/'">Editar</button>
-                        <form action="colegios/{{id_colegios}}/eliminar/" method="post">
+                        <button type="button" onclick="window.location = '/citas/{{id_citas}}/editar/'">Editar</button>
+                        <form action="/citas/{{id_citas}}/eliminar/" method="post">
                             <button type="submit">Eliminar</button>
                         </form>
                     </div>

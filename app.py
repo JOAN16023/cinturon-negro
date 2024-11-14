@@ -80,11 +80,12 @@ def loguo():
 
 #
 
-
+#pagina principal de citas 
 @app.route("/Inicionube/")
 def inicio():
     return render_template('paginaprincipal.html')
 
+#crear una cita 
 @app.route('/citas/crear/', methods=["GET"])
 def crear_citas():
     return render_template('crear_citas.html')
@@ -92,8 +93,36 @@ def crear_citas():
 @app.route('/citas/crear/', methods=["POST", ])
 def crear_cita():
     citas = request.form.get("nombre_citas")
-    Tasks.insert(citas)
+    date = request.form.get("nombre_date")
+    status = request.form.get("nombre_status")
+    Tasks.insert(citas, date, status)
     return redirect('/Inicionube/')
+
+#citas por listado 
+@app.route('/citas/<id_citas>', methods=["GET"])
+def mostrar_citas(id_citas):
+    citas = Tasks.select_one(id_citas)
+    return render_template('citas.html', citas=citas[0])
+
+#editar las citas
+@app.route('/citas/<id_citas>/editar/', methods=['GET'])
+def editar_citas_form(id_citas):
+    citas = Tasks.select_one(id_citas)
+    return render_template("citas_editar.html", citas=citas[0])
+
+@app.route('/citas/<id_citas>/editar/', methods=['POST'])
+def editar_citas(id_citas):
+    citas = request.form.get("nombre_citas")
+    id = request.form.get("id_citas")
+    print(citas, id)
+    Tasks.update(id_citas, citas)
+    return redirect("/Inicionube/")
+
+@app.route('/citas/<id_citas>/eliminar/', methods=['POST'])
+def eliminar_cita(id_cita):
+    Tasks.delete_one(id_cita)
+    return redirect("/Inicionube/")
+
 
 if __name__ == '__main__':
     app.run(debug=True)

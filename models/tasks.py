@@ -28,7 +28,7 @@ class Tasks:
     
     @classmethod
     def insert(cls, name, status, date):
-        query = f"INSERT INTO Tasks (nombre) VALUES ('{name}', '{status}', '{date}')"
+        query = f"INSERT INTO Tasks (name, status, date) VALUES ('{name}', '{status}', '{date}')"
         result = connectToMySQL('cd_exam3').query_db(query)
         return result
     
